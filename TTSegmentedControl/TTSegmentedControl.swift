@@ -43,7 +43,11 @@ public class TTSegmentedControl: UIView {
         var options:UIViewAnimationOptions = .curveEaseInOut
     }
     
-    open var itemTitles: [String] = ["Item1", "Item2", "Item3"]
+    open var itemTitles: [String] = ["Item1", "Item2", "Item3"] {
+        didSet{
+            self.configureItemsContent()
+        }
+    }
     
     var attributedDefaultTitles: [NSAttributedString]!
     var attributedSelectedTitles: [NSAttributedString]!
@@ -105,7 +109,7 @@ public class TTSegmentedControl: UIView {
         super.layoutSubviews()
         
         if !isConfigurated {
-            configureItemsConent()
+            configureItemsContent()
             configureViewBounds()
             
             configureContainerView()
@@ -249,7 +253,7 @@ extension TTSegmentedControl {
     }
     
     
-    fileprivate func configureItemsConent() {
+    fileprivate func configureItemsContent() {
         var unselectedAttributedStrings = [NSAttributedString]()
         for title in itemTitles {
             let attString = attributedStringForText(title, isSelected: false)
