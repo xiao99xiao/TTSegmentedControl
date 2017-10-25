@@ -132,6 +132,24 @@ public class TTSegmentedControl: UIView {
     
     open func reloadItems() {
         configureItemsContent()
+        configureViewBounds()
+        
+        configureContainerView()
+        configureItems()
+        configureSelectedView()
+        configureSelectedLabelsView()
+        configureSelectedLabelItems()
+        
+        containerView.frame = bounds
+        containerView.layer.cornerRadius = cornerRadius < 0 ? 0.5 * containerView.frame.size.height : cornerRadius
+        selectedLabelsView.frame = containerView.bounds
+        
+        updateFrameForLables(allItemLabels)
+        updateFrameForLables(allSelectedItemLabels)
+        updateSelectedViewFrame()
+        
+        selectItemAt(index:currentSelectedIndex)
+        _ = self.subviews.map({$0.isExclusiveTouch = true})
     }
     
     //MARK: - Getters
