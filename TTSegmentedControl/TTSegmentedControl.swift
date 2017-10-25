@@ -133,8 +133,17 @@ public class TTSegmentedControl: UIView {
     open func reloadItems() {
         configureItemsContent()
         configureViewBounds()
-        
-        configureContainerView()
+        allItemLabels = []
+        allSelectedItemLabels = []
+        for subview in containerView.subviews {
+            subview.removeFromSuperview()
+        }
+        for subThumbView in thumbContainerView.subviews {
+            subThumbView.removeFromSuperview()
+        }
+        for labelsView in selectedLabelsView.subviews {
+            labelsView.removeFromSuperview()
+        }
         configureItems()
         configureSelectedView()
         configureSelectedLabelsView()
