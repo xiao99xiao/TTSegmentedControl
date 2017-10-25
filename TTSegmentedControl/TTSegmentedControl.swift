@@ -43,11 +43,7 @@ public class TTSegmentedControl: UIView {
         var options:UIViewAnimationOptions = .curveEaseInOut
     }
     
-    open var itemTitles: [String] = ["Item1", "Item2", "Item3"] {
-        didSet{
-            self.configureItemsContent()
-        }
-    }
+    open var itemTitles: [String] = ["Item1", "Item2", "Item3"]
     
     var attributedDefaultTitles: [NSAttributedString]!
     var attributedSelectedTitles: [NSAttributedString]!
@@ -132,6 +128,10 @@ public class TTSegmentedControl: UIView {
         selectItemAt(index:currentSelectedIndex)
         _ = self.subviews.map({$0.isExclusiveTouch = true})
         
+    }
+    
+    open func reloadItems() {
+        configureItemsContent()
     }
     
     //MARK: - Getters
